@@ -38,3 +38,7 @@ export const activitiesConfig = {
   pageSizeMobile: 4,
   blurTransitionTime: 300,
 };
+
+export const relayerBlockInfoPoller = {
+  interval: 5_000,
+}
