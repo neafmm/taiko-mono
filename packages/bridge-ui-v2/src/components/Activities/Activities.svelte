@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { t } from 'svelte-i18n';
   import type { Address } from 'viem';
 
   import { Card } from '$components/Card';
   import { ChainSelector } from '$components/ChainSelector';
   import { DesktopOrLarger } from '$components/DesktopOrLarger';
+  import { warningToast } from '$components/NotificationToast';
   import OnAccount from '$components/OnAccount/OnAccount.svelte';
   import { Paginator } from '$components/Paginator';
   import { Spinner } from '$components/Spinner';
@@ -18,7 +19,7 @@
   import MobileDetailsDialog from './MobileDetailsDialog.svelte';
   import StatusInfoDialog from './StatusInfoDialog.svelte';
   import Transaction from './Transaction.svelte';
-  import { warningToast } from '$components/NotificationToast';
+  import { startPolling, type PollingEvent, type RelayerBlockInfor } from '$libs/relayer';
 
   let transactions: BridgeTransaction[] = [];
 
@@ -36,6 +37,8 @@
   let isDesktopOrLarger: boolean;
 
   let selectedItem: BridgeTransaction | null = null;
+
+  let polling: ReturnType<typeof startPolling>;
 
   const handlePageChange = (detail: number) => {
     isBlurred = true;
@@ -90,6 +93,10 @@
     }
   };
 
+  const onBlockInfoChange = async (blockInfo: RelayerBlockInfor[]) => {
+    console.log(blockInfo);
+  };
+
   $: pageSize = isDesktopOrLarger ? activitiesConfig.pageSizeDesktop : activitiesConfig.pageSizeMobile;
 
   $: transactionsToShow = getTransactionsToShow(currentPage, pageSize, transactions);
@@ -104,6 +111,26 @@
   $: renderLoading = loadingTxs && isConnected;
   $: renderTransactions = !renderLoading && isConnected && hasTxs;
   $: renderNoTransactions = !renderLoading && !renderTransactions;
+
+  onMount(async () => {
+    try {
+      polling = startPolling();
+
+      if (polling?.emitter) {
+        // The following listeners will trigger change in the UI
+        polling.emitter.on(PollingEvent.BLOCK_INFO, onBlockInfoChange);
+      }
+    } catch (err) {
+      console.error(err);
+      // TODO: handle error
+    }
+  });
+
+  onDestroy(() => {
+    if (polling) {
+      polling.destroy();
+    }
+  });
 </script>
 
 <div class="flex flex-col justify-center w-full">

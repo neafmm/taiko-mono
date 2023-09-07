@@ -1,9 +1,11 @@
 import { EventEmitter } from 'events';
-import { getLogger } from '$libs/util/logger';
-import { PUBLIC_RELAYER_URL } from '$env/static/public';
-import type { RelayerBlockInfo } from './types';
-import { nextTick } from '$libs/util/nextTick';
+
 import { relayerBlockInfoPoller } from '$config';
+import { PUBLIC_RELAYER_URL } from '$env/static/public';
+import { getLogger } from '$libs/util/logger';
+import { nextTick } from '$libs/util/nextTick';
+
+import type { RelayerBlockInfo } from './types';
 
 export enum PollingEvent {
   STOP = 'stop',
@@ -12,11 +14,11 @@ export enum PollingEvent {
 
 const log = getLogger('bridge:relayer:blockInfoPoller');
 
-const RELAYER_BLOCKINFO_API = `${PUBLIC_RELAYER_URL}/blockinfo`
+const RELAYER_BLOCKINFO_API = `${PUBLIC_RELAYER_URL}/blockInfo`;
 
 export function startPolling(runImmediately = false) {
   let interval: Maybe<ReturnType<typeof setInterval>>;
-  let emitter: EventEmitter;
+  const emitter = new EventEmitter();
 
   const stopPolling = () => {
     if (interval) {
@@ -38,8 +40,8 @@ export function startPolling(runImmediately = false) {
   const pollingFn = async () => {
     try {
       const response = await fetch(RELAYER_BLOCKINFO_API);
-      const data = await response.json() as { data: RelayerBlockInfo[] };
-      emitter.emit(PollingEvent.BLOCK_INFO, data.data);
+      const data = (await response.json()) as { data: RelayerBlockInfo[] };
+      emitter.emit(PollingEvent.BLOCK_INFO, data?.data);
     } catch (err) {
       console.error(err);
     }
@@ -47,8 +49,6 @@ export function startPolling(runImmediately = false) {
 
   if (!interval) {
     log('Starting polling for block info');
-
-    emitter = new EventEmitter();
     interval = setInterval(pollingFn, relayerBlockInfoPoller.interval);
 
     // setImmediate isn't standard
@@ -58,7 +58,7 @@ export function startPolling(runImmediately = false) {
       nextTick(pollingFn);
     }
   } else {
-    log('Already polling for transaction', bridgeTx);
+    log('Already polling for block info');
   }
 
   return { destroy, emitter };

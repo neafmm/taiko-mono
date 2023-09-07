@@ -41,4 +41,4 @@ export const activitiesConfig = {
 
 export const relayerBlockInfoPoller = {
   interval: 5_000,
-}
+};
