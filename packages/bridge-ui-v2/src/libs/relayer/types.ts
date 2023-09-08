@@ -55,10 +55,13 @@ export type APIResponseTransaction = {
   event: string;
 };
 
-export type RelayerBlockInfo = {
-  chainID: number;
-  latestProcessedBlock: number;
+export type BlockInfo = {
   latestBlock: number;
+  latestProcessedBlock: number;
+};
+
+export type RelayerBlockInfo = BlockInfo & {
+  chainID: number;
 };
 
 export type APIRequestParams = {

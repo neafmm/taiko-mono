@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onDestroy,onMount } from 'svelte';
   import { t } from 'svelte-i18n';
   import type { Address } from 'viem';
 
@@ -12,14 +12,15 @@
   import { Spinner } from '$components/Spinner';
   import { activitiesConfig } from '$config';
   import { type BridgeTransaction, fetchTransactions } from '$libs/bridge';
+  import { PollingEvent, type RelayerBlockInfo,startPolling } from '$libs/relayer';
   import { bridgeTxService } from '$libs/storage';
   import { account, network } from '$stores';
   import type { Account } from '$stores/account';
 
   import MobileDetailsDialog from './MobileDetailsDialog.svelte';
+  import { blockInfoStore } from './state';
   import StatusInfoDialog from './StatusInfoDialog.svelte';
   import Transaction from './Transaction.svelte';
-  import { startPolling, type PollingEvent, type RelayerBlockInfor } from '$libs/relayer';
 
   let transactions: BridgeTransaction[] = [];
 
@@ -93,8 +94,8 @@
     }
   };
 
-  const onBlockInfoChange = async (blockInfo: RelayerBlockInfor[]) => {
-    console.log(blockInfo);
+  const onBlockInfoChange = async (blockInfo: RelayerBlockInfo[]) => {
+    $blockInfoStore = blockInfo;
   };
 
   $: pageSize = isDesktopOrLarger ? activitiesConfig.pageSizeDesktop : activitiesConfig.pageSizeMobile;
