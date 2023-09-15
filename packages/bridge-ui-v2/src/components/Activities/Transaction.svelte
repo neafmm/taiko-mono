@@ -23,6 +23,8 @@
 
   const handlePress = () => dispatch('press');
 
+  // TODO: we might want reactivity here
+  // $: attrs = isDesktopOrLarger ? {} : { role: 'button' };
   let attrs = isDesktopOrLarger ? {} : { role: 'button' };
 </script>
 
@@ -77,4 +79,5 @@
     </a>
   </div>
 </div>
+
 <DesktopOrLarger bind:is={isDesktopOrLarger} />

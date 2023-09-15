@@ -22,6 +22,16 @@
   export let block = false;
   export let wide = false;
 
+  export let hasBorder = false;
+
+  let borderClasses: string = '';
+
+  if (hasBorder) {
+    borderClasses = 'border-1 border-primary-border';
+  } else {
+    borderClasses = 'border-0';
+  }
+
   // Remember, with Tailwind's classes you cannot use string interpolation: `btn-${type}`.
   // The whole class name must appear in the code in order for Tailwind compiler to know
   // it must be included during build-time.
@@ -45,7 +55,7 @@
   };
 
   $: classes = classNames(
-    'btn h-auto min-h-fit border-0',
+    'btn h-auto min-h-fit ',
 
     type === 'primary' ? 'body-bold' : 'body-regular',
 
@@ -59,6 +69,8 @@
     // For loading state we want to see well the content,
     // since we're showing some important information.
     loading ? 'btn-disabled !text-primary-content' : null,
+
+    $$restProps.disabled ? borderClasses : '',
 
     $$props.class,
   );

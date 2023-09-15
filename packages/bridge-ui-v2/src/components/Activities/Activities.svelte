@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy,onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { t } from 'svelte-i18n';
   import type { Address } from 'viem';
 
@@ -12,7 +12,7 @@
   import { Spinner } from '$components/Spinner';
   import { activitiesConfig } from '$config';
   import { type BridgeTransaction, fetchTransactions } from '$libs/bridge';
-  import { PollingEvent, type RelayerBlockInfo,startPolling } from '$libs/relayer';
+  import { PollingEvent, type RelayerBlockInfo, startPolling } from '$libs/relayer';
   import { bridgeTxService } from '$libs/storage';
   import { account, network } from '$stores';
   import type { Account } from '$stores/account';
