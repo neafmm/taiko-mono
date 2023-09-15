@@ -239,6 +239,7 @@
 
       // Let's add it to the user's localStorage
       const bridgeTx = {
+        receipt,
         hash: txHash,
         from: $account.address,
         amount: $enteredAmount,
@@ -246,7 +247,6 @@
         decimals: $selectedToken.decimals,
         srcChainId: BigInt($network.id),
         destChainId: BigInt($destNetwork.id),
-        blockNumber: receipt.blockNumber,
         tokenType: $selectedToken.type,
         status: MessageStatus.NEW,
         timestamp: Date.now(),

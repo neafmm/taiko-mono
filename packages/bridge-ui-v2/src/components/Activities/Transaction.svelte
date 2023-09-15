@@ -6,7 +6,7 @@
 
   export let item: BridgeTransaction;
 
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
 
   import { chainConfig } from '$chainConfig';
   import { DesktopOrLarger } from '$components/DesktopOrLarger';
@@ -14,6 +14,9 @@
 
   import ChainSymbolName from './ChainSymbolName.svelte';
   import Status from './Status.svelte';
+  import { blockInfoStore, prevBlockInfoStore } from './state';
+  import { network } from '$stores/network';
+  import { relayerBlockInfoPoller } from '$config';
 
   const dispatch = createEventDispatcher();
 
@@ -26,6 +29,26 @@
   // TODO: we might want reactivity here
   // $: attrs = isDesktopOrLarger ? {} : { role: 'button' };
   let attrs = isDesktopOrLarger ? {} : { role: 'button' };
+
+  onMount(() => {
+    const chainId = Number(item.srcChainId);
+    const bridgeTxBlockNumber = Number(item.receipt?.blockNumber);
+    const blockInfo = $blockInfoStore.find((blockInfo) => chainId === blockInfo.chainID);
+    const prevBlockInfo = $prevBlockInfoStore.find((blockInfo) => chainId === blockInfo.chainID);
+
+    if (!bridgeTxBlockNumber || !blockInfo || !prevBlockInfo || bridgeTxBlockNumber <= blockInfo.latestProcessedBlock) {
+      console.log('We do not know when this transaction will be claimed');
+      return;
+    }
+
+    const distanceToBlock = bridgeTxBlockNumber - blockInfo.latestProcessedBlock;
+
+    // At what speed the relayer is processing blocks
+    const blocksPerSecond =
+      (blockInfo.latestProcessedBlock - prevBlockInfo.latestProcessedBlock) / relayerBlockInfoPoller.interval;
+
+    console.log('Aamount of seconds to for the relayer to reach bridgeTx block:', distanceToBlock / blocksPerSecond);
+  });
 </script>
 
 <!-- We disable these warnings as we dynamically add the role -->
