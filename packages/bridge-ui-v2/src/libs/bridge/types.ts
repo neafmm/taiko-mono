@@ -67,6 +67,7 @@ export type BridgeTransaction = {
   srcChainId: ChainID;
   destChainId: ChainID;
   tokenType: TokenType;
+  blockNumber: bigint;
 
   // Used for sorting local ones
   timestamp?: number;

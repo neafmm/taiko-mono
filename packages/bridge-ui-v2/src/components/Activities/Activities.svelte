@@ -18,7 +18,7 @@
   import type { Account } from '$stores/account';
 
   import MobileDetailsDialog from './MobileDetailsDialog.svelte';
-  import { blockInfoStore } from './state';
+  import { blockInfoStore, prevBlockInfoStore } from './state';
   import StatusInfoDialog from './StatusInfoDialog.svelte';
   import Transaction from './Transaction.svelte';
 
@@ -95,7 +95,7 @@
   };
 
   const onBlockInfoChange = async (blockInfo: RelayerBlockInfo[]) => {
-    $blockInfoStore = blockInfo;
+    [$prevBlockInfoStore, $blockInfoStore] = [$blockInfoStore, blockInfo];
   };
 
   $: pageSize = isDesktopOrLarger ? activitiesConfig.pageSizeDesktop : activitiesConfig.pageSizeMobile;

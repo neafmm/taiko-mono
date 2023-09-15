@@ -227,7 +227,7 @@
         }),
       );
 
-      await pendingTransactions.add(txHash, $network.id);
+      const receipt = await pendingTransactions.add(txHash, $network.id);
 
       successToast(
         $t('bridge.actions.bridge.success', {
@@ -246,6 +246,7 @@
         decimals: $selectedToken.decimals,
         srcChainId: BigInt($network.id),
         destChainId: BigInt($destNetwork.id),
+        blockNumber: receipt.blockNumber,
         tokenType: $selectedToken.type,
         status: MessageStatus.NEW,
         timestamp: Date.now(),
