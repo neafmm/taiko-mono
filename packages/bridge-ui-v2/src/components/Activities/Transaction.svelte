@@ -47,7 +47,7 @@
     const blocksPerSecond =
       (blockInfo.latestProcessedBlock - prevBlockInfo.latestProcessedBlock) / relayerBlockInfoPoller.interval;
 
-    console.log('Aamount of seconds to for the relayer to reach bridgeTx block:', distanceToBlock / blocksPerSecond);
+    console.log('Amount of seconds to for the relayer to reach bridgeTx block:', distanceToBlock / blocksPerSecond);
   });
 </script>
 
