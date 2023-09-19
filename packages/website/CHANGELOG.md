@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.16.0](https://github.com/taikoxyz/taiko-mono/compare/website-v0.15.0...website-v0.16.0) (2023-09-19)
+
+
+### Features
+
+* **website:** add Catalyst, Cyberscan, MoveChess, STAKEME, X7Finance to ecosystem ([#14691](https://github.com/taikoxyz/taiko-mono/issues/14691)) ([b6f3b71](https://github.com/taikoxyz/taiko-mono/commit/b6f3b7116a0fa8c7d0fa11399e18ccb1688cab37))
+* **website:** alpha-5 docs ([#14725](https://github.com/taikoxyz/taiko-mono/issues/14725)) ([2abe121](https://github.com/taikoxyz/taiko-mono/commit/2abe121f30fd754ef7c91afb0e37270f1a5df7cc))
+
+
+### Bug Fixes
+
+* **docs:** fix outdated documentation and simplify explanations ([#14653](https://github.com/taikoxyz/taiko-mono/issues/14653)) ([f16d45d](https://github.com/taikoxyz/taiko-mono/commit/f16d45dcce1d92b7e8c1dc7f2b80a048ec1e828a))
+* **website:** broken link ([#14729](https://github.com/taikoxyz/taiko-mono/issues/14729)) ([7e51709](https://github.com/taikoxyz/taiko-mono/commit/7e51709d92d8ab7ca0451896cb45a60580566e72))
+* **website:** broken link ([#14730](https://github.com/taikoxyz/taiko-mono/issues/14730)) ([0a7ec84](https://github.com/taikoxyz/taiko-mono/commit/0a7ec84982c9a676b56043d875ccf8d695054cf2))
+* **website:** temp fix contributing manual ([#14710](https://github.com/taikoxyz/taiko-mono/issues/14710)) ([06ac1a6](https://github.com/taikoxyz/taiko-mono/commit/06ac1a6e0e537d6bb714ffe5984c7e71cbeba614))
+* **website:** Update bridge concept ([#14665](https://github.com/taikoxyz/taiko-mono/issues/14665)) ([4190685](https://github.com/taikoxyz/taiko-mono/commit/419068553d877704d5149dd4a4f222e7ee8b8b58))
+
 ## [0.15.0](https://github.com/taikoxyz/taiko-mono/compare/website-v0.14.0...website-v0.15.0) (2023-09-05)
 
 

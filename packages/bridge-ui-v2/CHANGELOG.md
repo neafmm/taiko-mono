@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.7.0](https://github.com/taikoxyz/taiko-mono/compare/bridge-ui-v2-v2.6.0...bridge-ui-v2-v2.7.0) (2023-09-19)
+
+
+### Features
+
+* **bridge-ui-v2:** add BLL warning ([#14723](https://github.com/taikoxyz/taiko-mono/issues/14723)) ([6e5b789](https://github.com/taikoxyz/taiko-mono/commit/6e5b789e06d74c98c22a18af7f59ee94572d0866))
+* **bridge-ui-v2:** allow bridging to all layers ([#14525](https://github.com/taikoxyz/taiko-mono/issues/14525)) ([e25e0cd](https://github.com/taikoxyz/taiko-mono/commit/e25e0cd060e651f1e626d2e8a104e261ff90e94e))
+* **bridge-ui-v2:** close dialogs with ESC key ([#14700](https://github.com/taikoxyz/taiko-mono/issues/14700)) ([dbf7a24](https://github.com/taikoxyz/taiko-mono/commit/dbf7a24a32a4518f4a9dbbfbbead732ab8a9b548))
+* **bridge-ui-v2:** Improve refreshing users balance ([#14651](https://github.com/taikoxyz/taiko-mono/issues/14651)) ([8028a49](https://github.com/taikoxyz/taiko-mono/commit/8028a49ea2dfc123b1c818afb722a029d3743e5c))
+* **bridge-ui-v2:** styling adjustments for dialogs ([#14666](https://github.com/taikoxyz/taiko-mono/issues/14666)) ([91c6284](https://github.com/taikoxyz/taiko-mono/commit/91c6284e2da231233fdb9ad8adfecb7790d6b90a))
+
+
+### Bug Fixes
+
+* **bridge-ui-v2:** build errors ([#14706](https://github.com/taikoxyz/taiko-mono/issues/14706)) ([f180bcd](https://github.com/taikoxyz/taiko-mono/commit/f180bcd188452f65542e18250652b9c243d4a303))
+* **bridge-ui-v2:** button disable status ([#14674](https://github.com/taikoxyz/taiko-mono/issues/14674)) ([4b304dc](https://github.com/taikoxyz/taiko-mono/commit/4b304dc37369ba7775fb3669b1e6af5967f95db8))
+* **bridge-ui-v2:** custom tokens from local storage ([#14677](https://github.com/taikoxyz/taiko-mono/issues/14677)) ([3ebf022](https://github.com/taikoxyz/taiko-mono/commit/3ebf0226606b9561ee60fa47ef7d292a3b843678))
+* **bridge-ui-v2:** fix unit tests ([#14679](https://github.com/taikoxyz/taiko-mono/issues/14679)) ([7ddd7ef](https://github.com/taikoxyz/taiko-mono/commit/7ddd7ef77e735fbcffecac538e206fb64e9c14bf))
+* **bridge-ui-v2:** processing fee ([#14696](https://github.com/taikoxyz/taiko-mono/issues/14696)) ([1103695](https://github.com/taikoxyz/taiko-mono/commit/1103695fa77265b8670be4ecaee2a5ead8e8e5c0))
+* **bridge-ui-v2:** Show warnings on faucet correctly ([#14676](https://github.com/taikoxyz/taiko-mono/issues/14676)) ([861c7f3](https://github.com/taikoxyz/taiko-mono/commit/861c7f31f800813570579c4b0e7dc69956f4c04f))
+* **bridge-ui-v2:** update mint button state ([#14720](https://github.com/taikoxyz/taiko-mono/issues/14720)) ([3ee161b](https://github.com/taikoxyz/taiko-mono/commit/3ee161b7a1ebac006594961457e9e7f426ed29a2))
+
 ## [2.6.0](https://github.com/taikoxyz/taiko-mono/compare/bridge-ui-v2-v2.5.0...bridge-ui-v2-v2.6.0) (2023-09-05)
 
 
